@@ -13,18 +13,21 @@ services:
     ports:
       - "8001:5432"
 
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   restart: always
-  #   ports:
-  #     - 8080:80
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: local@test.com
-  #     PGADMIN_DEFAULT_PASSWORD: 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pg-admin
+    restart: always
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: local@test.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    depends_on:
+      - db
 
   api:
     image: ${DOCKER_REGISTRY-}api
-    container_name: docker-test-api
+    container_name: api
     build:
       context: .
       dockerfile: src/Api/Dockerfile
@@ -34,7 +37,5 @@ services:
   
 
 volumes:
-  pgData:
-  # pgadmindata:  
-  
+  pgData:  
   
