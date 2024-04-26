@@ -1,5 +1,7 @@
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,11 @@ builder.Services.SwaggerDocument(options =>
     };
 });
 
-
+builder.Services.AddDbContext<DockerTestContext>(options =>
+{
+    var connectionString = "Host=postgres-db;Database=docker_test;Username=postgres;Password=postgres";
+    options.UseNpgsql(connectionString);
+});
 
 
 var app = builder.Build();
