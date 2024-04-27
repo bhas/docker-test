@@ -2,6 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Swagger;
 using Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,12 @@ builder.Services.AddDbContext<DockerTestContext>(options =>
 
 
 var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    using var serviceScope = app.Services.CreateScope();
+    var dbContext = serviceScope.ServiceProvider.GetRequiredService<DockerTestContext>();
+    dbContext.Database.Migrate();
+}
 app.UseHttpsRedirection();
 app.UseFastEndpoints();
 app.UseSwaggerGen();

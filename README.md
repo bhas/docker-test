@@ -36,4 +36,17 @@ You are free to use another datbase management tool instead of pgAdmin if you pr
    * Username = postgres
    * Password = postgres
 
+### Making database schema changes
+For changes to the database schema we use [Entity Framework with the .NET Core CLI](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli) to add and apply database migrations.
+
+First install the .NET Core CLI globally by running: `dotnet tool install --global dotnet-ef`
+
+Now you can add a new migration by running the below command. Replace `<YourMigrationName>` with the name of your migration, i.e. _AddUsersTable_. Remember to review that the migration file looks correct.
+```shell
+dotnet ef migrations add <YourMigrationName> --context DockerTestContext --project src\Infrastructure --startup-project src\Api --output-dir Database/Migrations --configuration Development
+```
+**OBS** If you encounter an error: `Your startup project 'Api' doesn't reference...` try rebuilding the entire solution.
+
+All migrations are automatically applied to your database when you run the project.
+
 

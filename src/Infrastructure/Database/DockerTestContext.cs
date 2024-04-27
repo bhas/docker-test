@@ -17,9 +17,6 @@ public class DockerTestContext : DbContext
     {
         modelBuilder.HasDefaultSchema("public");
 
-        modelBuilder.Entity<User>().ToTable("users").HasKey(x => x.Id);
-        modelBuilder.Entity<User>().Property(x => x.Id).HasColumnName("id");
-        modelBuilder.Entity<User>().Property(x => x.Firstname).HasColumnName("firstname");
-        modelBuilder.Entity<User>().Property(x => x.LastName).HasColumnName("lastname");
+        modelBuilder.Entity<User>().HasKey(x => x.Id);
     }
 }
