@@ -1,6 +1,8 @@
+using Application.HttpClients;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Infrastructure.Database;
+using Infrastructure.HttpClients;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
@@ -23,6 +25,12 @@ builder.Services.AddDbContext<DockerTestContext>(options =>
     var connectionString = "Host=postgres-db;Database=docker_test;Username=postgres;Password=postgres";
     options.UseNpgsql(connectionString);
 });
+builder.Services.AddSingleton<IAssetApi, MockApi>();
+builder.Services.AddSingleton<IOrderListApi, MockApi>();
+builder.Services.AddSingleton<IBriefingApi, MockApi>();
+
+
+
 
 
 var app = builder.Build();

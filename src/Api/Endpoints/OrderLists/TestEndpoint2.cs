@@ -9,7 +9,7 @@ public class TestEndpoint2(DockerTestContext context) : Endpoint<TestEndpoint2.R
     public class Request
     {
         [FromBody]
-        public required User User { get; set; }
+        public required AssetDto User { get; set; }
     }
 
     public override void Configure()
@@ -20,8 +20,8 @@ public class TestEndpoint2(DockerTestContext context) : Endpoint<TestEndpoint2.R
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        context.Users.Add(req.User);
-        await context.SaveChangesAsync();
-        await SendCreatedAtAsync<TestEndpoint>(new { id = 101 }, "User was created", cancellation: ct);
+        //context.Users.Add(req.User);
+        //await context.SaveChangesAsync();
+        await SendCreatedAtAsync<TestEndpoint2>(new { id = 101 }, "User was created", cancellation: ct);
     }
 }

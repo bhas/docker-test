@@ -1,4 +1,4 @@
-﻿using Api.Dtos;
+﻿using Domain.Entities;
 using FastEndpoints;
 using static Api.Endpoints.OrderLists.GetOrderListEndpoint;
 
@@ -23,7 +23,7 @@ public class GetOrderListEndpoint : Endpoint<Request, OrderListDto>
         {
             OrderNumber = req.OrderNumber,
             CustomerName = "Bob Dylan",
-            DateTimeOffset = DateTimeOffset.UtcNow,
+            OrderDate = DateTimeOffset.UtcNow,
             Assets = new List<OrderListAssetDto>()
             {
                 new OrderListAssetDto

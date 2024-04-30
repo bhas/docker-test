@@ -5,7 +5,6 @@ using System.Reflection.Metadata;
 namespace Infrastructure.Database;
 public class DockerTestContext : DbContext
 {
-    public DbSet<User> Users { get; set; }
 
     public DockerTestContext(DbContextOptions options)
         : base(options)
@@ -13,10 +12,4 @@ public class DockerTestContext : DbContext
 
     }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasDefaultSchema("public");
-
-        modelBuilder.Entity<User>().HasKey(x => x.Id);
-    }
 }

@@ -26,4 +26,9 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Endpoints\Briefings\" />
+    <Folder Include="Endpoints\ContentDistributions\" />
+  </ItemGroup>
+
 </Project>
