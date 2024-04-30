@@ -16,7 +16,7 @@ public class MessageCreator : IMessageCreator
         var message = template;
         foreach (var arg in arguments)
         {
-            message = template.Replace(arg.Key, arg.Value);
+            message = message.Replace(arg.Key, arg.Value);
         }
 
         DetectHackerInjections(message);
