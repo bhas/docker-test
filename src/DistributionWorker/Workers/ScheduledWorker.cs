@@ -1,7 +1,7 @@
 using Application.Distribution;
 using Infrastructure.Database.Repositories;
 
-namespace DistributionWorker.Workers;
+namespace Workers.Workers;
 
 public class ScheduledWorker(
     IServiceScopeFactory serviceScopeFactory,
@@ -33,7 +33,7 @@ public class ScheduledWorker(
 
         var configs = distributionConfigRepository.GetScheduledConfigs();
 
-        foreach ( var config in configs )
+        foreach (var config in configs)
         {
             var triggerConfig = TriggerConfig.FromJson(config.TriggerConfigJson);
             if (triggerConfig == null)

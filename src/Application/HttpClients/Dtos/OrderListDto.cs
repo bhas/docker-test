@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities;
+﻿namespace Application.HttpClients.Dtos;
 
 public class OrderListDto()
 {

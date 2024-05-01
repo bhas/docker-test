@@ -39,6 +39,14 @@ services:
 
   
 
+  workers:
+    image: ${DOCKER_REGISTRY-}workers
+    build:
+      context: .
+      dockerfile: src/DistributionWorker/Dockerfile
+    depends_on:
+      - db
+
 volumes:
   pgData:
   pgAdminData:

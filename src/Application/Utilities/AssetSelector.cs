@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.ValueType.AssetSelector;
+﻿namespace Application.Utilities;
 public interface IAssetSelector
 {
-    HashSet<string> GetAssetIds(); 
+    HashSet<string> GetAssetIds();
 }
 
 public class AssetSelector : IAssetSelector

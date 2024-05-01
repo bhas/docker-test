@@ -1,8 +1,7 @@
-﻿
-
+﻿using Application.Integrations;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Integrations;
+namespace Infrastructure.Integrations;
 public class MockFacebookClient(ILogger<MockFacebookClient> logger) : IFacebookClient
 {
     public Task PostOnPageAsync(string pageIdentifier, string? text, IEnumerable<string> imgUrls)

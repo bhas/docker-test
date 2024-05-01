@@ -1,8 +1,7 @@
-﻿
-
+﻿using Application.Integrations;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Integrations;
+namespace Infrastructure.Integrations;
 public class MockEmailClient(ILogger<MockEmailClient> logger) : IEmailClient
 {
     public Task SendEmailAsync(string address, string? topic, string htmlContent, IEnumerable<EmailAttachment> attachments)

@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 
+namespace Domain.ValueTypes;
+
 public class TriggerConfig
 {
     public DateTimeOffset? ScheduledDate { get; set; }

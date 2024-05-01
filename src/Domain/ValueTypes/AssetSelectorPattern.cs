@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 
+namespace Domain.ValueTypes;
+
 public class AssetSelectorPattern
 {
     public HashSet<string> FolderIds { get; set; } = [];

@@ -1,7 +1,7 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
 
-namespace Application.MessageCreators;
+namespace Application.Utilities;
 
 public interface IMessageCreator
 {

@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities;
+
+namespace Api.Dtos;
 
 public class DistributionConfigDto
 {
@@ -15,7 +17,7 @@ public class DistributionConfigDto
 
     public DistributionConfigDto()
     {
-        
+
     }
 
     public DistributionConfigDto(DistributionConfig entity)
@@ -28,7 +30,7 @@ public class DistributionConfigDto
         LastModifiedBy = entity.LastModifiedBy;
         LastModifiedDate = entity.LastModifiedDate;
         TriggerType = entity.TriggerType;
-        TriggerConfig = entity.TriggerConfigJson;
+        TriggerConfig = Domain.ValueTypes.TriggerConfig.FromJson(entity.TriggerConfigJson);
         AssetSelectorPattern = entity.AssetSelectorPatternJson;
     }
 }

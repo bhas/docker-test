@@ -1,9 +1,10 @@
-﻿using Domain.Entities;
+﻿using Api.Dtos;
+using Domain.Entities;
 using FastEndpoints;
 using Infrastructure.Database.Repositories;
 using System.Text.Json;
 
-namespace Api.Endpoints.DistributionConfigs;
+namespace Api.Endpoints.Distributions;
 
 public class AddDistributionEndpoint(IDistributionConfigRepository distributionConfigRepository) : Endpoint<AddDistributionEndpoint.Request, DistributionConfigDto>
 {

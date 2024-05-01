@@ -1,5 +1,5 @@
 ﻿using Application.HttpClients;
-using Domain.Entities;
+using Application.HttpClients.Dtos;
 using System.Text.Json;
 
 namespace Infrastructure.HttpClients;

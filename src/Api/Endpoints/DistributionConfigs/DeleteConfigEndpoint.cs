@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿using Api.Dtos;
 using FastEndpoints;
 using Infrastructure.Database.Repositories;
 

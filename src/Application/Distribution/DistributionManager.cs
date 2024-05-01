@@ -1,6 +1,7 @@
 ﻿
 using Application.Distribution.Distributors;
 using Application.HttpClients;
+using Application.HttpClients.Dtos;
 using Domain.Entities;
 using Microsoft.Extensions.Logging;
 namespace Application.Distribution;
@@ -17,7 +18,7 @@ public class DistributionManager(IAssetApi assetApi, ILogger<DistributionManager
         var assets = await GetAssets(config);
         var assetIds = assets.Select(x => x.AssetId).ToHashSet();
         var distributor = FindDistributor(config.Channel, config.Method);
-        await distributor.DistributeAsync(assetIds, config.Channel, config.Method, null);
+        await distributor.DistributeAsync(assetIds, config.Channel, config.Method, config.);
         logger.LogInformation("Distributed {count} assets via {channel} {method}. configId = {configId}", assets.Count(), config.Channel, config.Method, config.Id);
     }
 

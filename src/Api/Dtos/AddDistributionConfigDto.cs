@@ -1,4 +1,7 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities;
+using Domain.ValueTypes;
+
+namespace Api.Dtos;
 
 public class AddDistributionConfigDto
 {

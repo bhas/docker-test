@@ -1,4 +1,4 @@
-using Application.MessageCreators;
+using Application.Utilities;
 using Domain.Constants;
 using Domain.Enums;
 using FluentAssertions;

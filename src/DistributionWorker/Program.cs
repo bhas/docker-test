@@ -2,13 +2,13 @@ using Application.Distribution;
 using Application.Distribution.Distributors;
 using Application.HttpClients;
 using Application.Integrations;
-using Application.MessageCreators;
-using DistributionWorker.Workers;
-using Domain.ValueType.AssetSelector;
+using Application.Utilities;
 using Infrastructure.Database;
 using Infrastructure.Database.Repositories;
 using Infrastructure.HttpClients;
+using Infrastructure.Integrations;
 using Microsoft.EntityFrameworkCore;
+using Workers.Workers;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<ScheduledWorker>();

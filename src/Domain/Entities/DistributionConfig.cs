@@ -16,15 +16,18 @@ public class DistributionConfig
 
     /// <summary>
     /// Contains the config for the triggering and may change depending on the TriggerType
-    /// Skipped for now
     /// </summary>
     public string? TriggerConfigJson { get; set; }
 
     /// <summary>
     /// Contains the pattern used for selecting assets, i.e. based on meta data filters such as author, assigned project etc.
-    /// Skipped for now
     /// </summary>
     public string? AssetSelectorPatternJson { get; set; }
+
+    /// <summary>
+    /// Contains the config for the distribution, i.e. the email info of the receiver
+    /// </summary>
+    public string? DistributionConfigJson { get; set; }
 }
 
 public enum TriggerType

@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Api.Dtos;
+using Domain.Entities;
 using FastEndpoints;
 using Infrastructure.Database.Repositories;
 using System.Text.Json;
