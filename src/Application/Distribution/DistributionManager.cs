@@ -36,6 +36,8 @@ public class DistributionManager(IAssetApi assetApi,
             Date = DateTimeOffset.UtcNow,
             DistributionConfigId = config.Id,
             Status = DistributionStatus.Sent,
+            Channel = config.Channel,
+            Method = config.Method,
             StatusText = null,
             Assets = assetIds.Select(x => new DistributionAssetLink { AssetId = x }).ToList()
         };

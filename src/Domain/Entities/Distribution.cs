@@ -10,6 +10,8 @@ public class Distribution
     public long DistributionConfigId { get; set; }
     public DistributionStatus Status { get; set; }
     public string? StatusText { get; set; }
+    public required DistributionChannel Channel { get; set; }
+    public required string Method { get; set; }
     public ICollection<DistributionAssetLink> Assets { get; set; } = [];
 }
 
