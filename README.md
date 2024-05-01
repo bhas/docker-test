@@ -43,7 +43,7 @@ First install the .NET Core CLI globally by running: `dotnet tool install --glob
 
 Now you can add a new migration by running the below command. Replace `<YourMigrationName>` with the name of your migration, i.e. _AddUsersTable_. Remember to review that the migration file looks correct.
 ```shell
-dotnet ef migrations add <YourMigrationName> --context DockerTestContext --project src\Infrastructure --startup-project src\Api --output-dir Database/Migrations --configuration Development
+dotnet ef migrations add AddActiveColumn --context DockerTestContext --project src\Infrastructure --startup-project src\Api --output-dir Database/Migrations --configuration Development
 ```
 **OBS** If you encounter an error: `Your startup project 'Api' doesn't reference...` try rebuilding the entire solution.
 
