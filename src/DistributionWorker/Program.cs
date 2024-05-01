@@ -3,6 +3,7 @@ using Application.Distribution.Distributors;
 using Application.HttpClients;
 using Application.Integrations;
 using Application.Utilities;
+using Domain.Entities;
 using Infrastructure.Database;
 using Infrastructure.Database.Repositories;
 using Infrastructure.HttpClients;

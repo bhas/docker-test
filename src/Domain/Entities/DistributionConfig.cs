@@ -10,6 +10,7 @@ public class DistributionConfig
     public DateTimeOffset CreatedDate { get; set; }
     public string? LastModifiedBy { get; set; }
     public DateTimeOffset LastModifiedDate { get; set; }
+    public bool Active { get; set; }
     public bool Deleted { get; set; }
     //public bool RequiresDistribution { get; set; }
     public TriggerType TriggerType { get; set; }
@@ -23,11 +24,6 @@ public class DistributionConfig
     /// Contains the pattern used for selecting assets, i.e. based on meta data filters such as author, assigned project etc.
     /// </summary>
     public string? AssetSelectorPatternJson { get; set; }
-
-    /// <summary>
-    /// Contains the config for the distribution, i.e. the email info of the receiver
-    /// </summary>
-    public string? DistributionConfigJson { get; set; }
 }
 
 public enum TriggerType

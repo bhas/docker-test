@@ -1,5 +1,6 @@
 using Application.Distribution;
-using Infrastructure.Database.Repositories;
+using Domain.Entities;
+using Domain.ValueTypes;
 
 namespace Workers.Workers;
 

@@ -1,4 +1,5 @@
 using Application.HttpClients;
+using Domain.Entities;
 using FastEndpoints;
 using FastEndpoints.Swagger;
 using Infrastructure.Database;

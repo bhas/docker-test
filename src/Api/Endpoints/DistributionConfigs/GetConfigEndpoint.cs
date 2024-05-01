@@ -1,6 +1,6 @@
 ﻿using Api.Dtos;
+using Domain.Entities;
 using FastEndpoints;
-using Infrastructure.Database.Repositories;
 
 namespace Api.Endpoints.DistributionConfigs;
 

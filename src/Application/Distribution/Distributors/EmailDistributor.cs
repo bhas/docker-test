@@ -20,7 +20,7 @@ public class EmailDistributor(IEmailClient emailClient, ILogger<EmailDistributor
         var options = EmailDistributorOptions.Parse(optionsJson);
 
 
-        var downloadUrl = method == DistributionMethodConstants.Email.DigitalDownload ? "Some url" : null;
+        var downloadUrl = method == DistributionMethodConstants.Email.DigitalDownload ? "http://sometesturl.com" : null;
 
 
         var template = options.Template ?? messageCreator.GetDefaultTemplate(channel, method);

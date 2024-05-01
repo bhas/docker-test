@@ -3,19 +3,12 @@ using Domain.Exceptions;
 
 namespace Infrastructure.Database.Repositories;
 
-public interface IDistributionConfigRepository
-{
-    void Add(DistributionConfig entity);
-    DistributionConfig Get(long id);
-    List<DistributionConfig> GetScheduledConfigs();
-    void Delete(long id);
-}
-
 public class DistributionConfigRepository(DockerTestContext context) : IDistributionConfigRepository
 {
     public void Add(DistributionConfig entity)
     {
         entity.CreatedDate = DateTimeOffset.UtcNow;
+        entity.Active = true;
         entity.CreatedBy = "Username read from session";
         entity.LastModifiedDate = DateTimeOffset.UtcNow;
         entity.LastModifiedBy = "Username read from session";
@@ -31,7 +24,13 @@ public class DistributionConfigRepository(DockerTestContext context) : IDistribu
 
     public List<DistributionConfig> GetScheduledConfigs()
     {
-        return context.DistributionConfigs.Where(x => x.TriggerType == TriggerType.Scheduled && !x.Deleted).ToList();
+        return context.DistributionConfigs.Where(x => x.TriggerType == TriggerType.Scheduled && !x.Deleted && x.Active).ToList();
+    }
+
+    public void Deactivate(DistributionConfig entity)
+    {
+        entity.Active = false;
+        context.SaveChanges();
     }
 
     public void Delete(long id)

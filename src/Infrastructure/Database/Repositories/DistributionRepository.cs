@@ -3,13 +3,6 @@ using Domain.Exceptions;
 
 namespace Infrastructure.Database.Repositories;
 
-public interface IDistributionRepository
-{
-    void Add(Distribution entity);
-    Distribution Get(long id);
-    List<Distribution> GetAllForConfig(long configId);
-}
-
 public class DistributionRepository(DockerTestContext context) : IDistributionRepository
 {
     public void Add(Distribution entity)

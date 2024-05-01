@@ -1,4 +1,6 @@
 ﻿
+using Domain.ValueTypes;
+
 namespace Domain.Entities;
 
 public class Distribution
@@ -8,7 +10,7 @@ public class Distribution
     public long DistributionConfigId { get; set; }
     public DistributionStatus Status { get; set; }
     public string? StatusText { get; set; }
-    public ICollection<DistributionAssetLink> Assets { get; } = [];
+    public ICollection<DistributionAssetLink> Assets { get; set; } = [];
 }
 
 public enum DistributionStatus

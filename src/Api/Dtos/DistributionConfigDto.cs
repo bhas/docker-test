@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.ValueTypes;
 
 namespace Api.Dtos;
 
@@ -12,8 +13,8 @@ public class DistributionConfigDto
     public string? LastModifiedBy { get; set; }
     public DateTimeOffset LastModifiedDate { get; set; }
     public TriggerType TriggerType { get; set; }
-    public dynamic? TriggerConfig { get; set; }
-    public dynamic? AssetSelectorPattern { get; set; }
+    public TriggerConfig? TriggerConfig { get; set; }
+    public AssetSelectorPattern? AssetSelectorPattern { get; set; }
 
     public DistributionConfigDto()
     {
@@ -30,7 +31,7 @@ public class DistributionConfigDto
         LastModifiedBy = entity.LastModifiedBy;
         LastModifiedDate = entity.LastModifiedDate;
         TriggerType = entity.TriggerType;
-        TriggerConfig = Domain.ValueTypes.TriggerConfig.FromJson(entity.TriggerConfigJson);
-        AssetSelectorPattern = entity.AssetSelectorPatternJson;
+        TriggerConfig = TriggerConfig.FromJson(entity.TriggerConfigJson);
+        AssetSelectorPattern = AssetSelectorPattern.FromJson(entity.AssetSelectorPatternJson);
     }
 }

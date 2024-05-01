@@ -17,7 +17,6 @@ services:
     image: dpage/pgadmin4
     container_name: pg-admin
     restart: always
-
     environment:
       PGADMIN_DEFAULT_EMAIL: local@test.com
       PGADMIN_DEFAULT_PASSWORD: postgres
@@ -36,8 +35,6 @@ services:
       dockerfile: src/Api/Dockerfile
     depends_on:
       - db
-
-  
 
   workers:
     image: ${DOCKER_REGISTRY-}workers
