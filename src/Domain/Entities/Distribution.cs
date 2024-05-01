@@ -1,5 +1,4 @@
-﻿using Domain.ValueType;
-
+﻿
 namespace Domain.Entities;
 
 public class Distribution

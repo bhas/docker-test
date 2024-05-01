@@ -1,5 +1,4 @@
-﻿using Domain.ValueType;
-
+﻿
 namespace Domain.Entities;
 public class DistributionConfig
 {
@@ -12,7 +11,7 @@ public class DistributionConfig
     public string? LastModifiedBy { get; set; }
     public DateTimeOffset LastModifiedDate { get; set; }
     public bool Deleted { get; set; }
-
+    //public bool RequiresDistribution { get; set; }
     public TriggerType TriggerType { get; set; }
 
     /// <summary>

@@ -5,7 +5,7 @@ using System.Text.Json;
 namespace Infrastructure.HttpClients;
 public class MockApi : IAssetApi, IBriefingApi, IOrderListApi
 {
-    public Task<IReadOnlyList<AssetDto>> GetAssetsAsync(HashSet<string> assetIds)
+    public Task<IReadOnlyList<AssetDto>> GetAssetsAsync(HashSet<string> assetIds, HashSet<string> folderIds)
     {
         var result = new List<AssetDto>
         {

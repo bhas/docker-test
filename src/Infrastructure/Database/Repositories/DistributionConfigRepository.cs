@@ -7,6 +7,7 @@ public interface IDistributionConfigRepository
 {
     void Add(DistributionConfig entity);
     DistributionConfig Get(long id);
+    List<DistributionConfig> GetScheduledConfigs();
     void Delete(long id);
 }
 
@@ -28,9 +29,16 @@ public class DistributionConfigRepository(DockerTestContext context) : IDistribu
         return entity ?? throw new NotFoundException();
     }
 
+    public List<DistributionConfig> GetScheduledConfigs()
+    {
+        return context.DistributionConfigs.Where(x => x.TriggerType == TriggerType.Scheduled && !x.Deleted).ToList();
+    }
+
     public void Delete(long id)
     {
-        var entity = context.DistributionConfigs.Find(id) ?? throw new NotFoundException();
+        var entity = context.DistributionConfigs.SingleOrDefault(x => x.Id == id && !x.Deleted) ?? throw new NotFoundException();
+        entity.LastModifiedBy = "Username who deleted";
+        entity.LastModifiedDate = DateTimeOffset.UtcNow;
         entity.Deleted = true;
         context.SaveChanges();
     }

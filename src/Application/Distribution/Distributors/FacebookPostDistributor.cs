@@ -1,61 +1,60 @@
-﻿
-using Application.Integrations;
+﻿using Application.Integrations;
 using Application.MessageCreators;
 using Domain.Constants;
 using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
-namespace Domain.ValueType.Channels;
+namespace Application.Distribution.Distributors;
 
-public class FacebookMessageDistributor(IFacebookClient facebookClient, ILogger<FacebookMessageDistributor> logger, IMessageCreator messageCreator) : IDistributor
+public class FacebookPostDistributor(IFacebookClient facebookClient, ILogger<FacebookPostDistributor> logger, IMessageCreator messageCreator) : IDistributor
 {
     public bool CanProcess(DistributionChannel channel, string method)
     {
-        return channel == DistributionChannel.Facebook && method == DistributionMethodConstants.Facebook.DirectMessage;
+        return channel == DistributionChannel.Facebook && method == DistributionMethodConstants.Facebook.PagePost;
     }
 
     public async Task DistributeAsync(HashSet<string> assetIds, DistributionChannel channel, string method, string? optionsJson)
     {
         logger.LogInformation("Distributing content for {channel} {method}", channel, method);
-        var options = FacebookMessageDistributorOptions.Parse(optionsJson);
+        var options = FacebookPostDistributorOptions.Parse(optionsJson);
 
         var imgUrls = new string[] {
-            "Some url1",
+            "Some url"
         };
 
         var template = options.Template ?? messageCreator.GetDefaultTemplate(channel, method);
         var arguments = new[]
         {
-            KeyValuePair.Create(PlaceholderConstants.ReceiverName, options.CampaignName),
+            KeyValuePair.Create(PlaceholderConstants.CampaignName, options.CampaignName),
         };
-        var message = messageCreator.CreateMessage(template, arguments);
+        var content = messageCreator.CreateMessage(template, arguments);
         var attachments = new List<EmailAttachment>();
         if (method == DistributionMethodConstants.Email.AttachedFiles)
         {
             attachments.Add(new EmailAttachment { FileName = "Files.zip", FileStream = File.OpenRead("Somefile") });
         }
 
-        foreach(var userName in options.UserNames)
+        foreach (var pageIdentifier in options.PageIdentifiers)
         {
-            await facebookClient.SendDirectMessageAsync(userName, message, imgUrls);
+            await facebookClient.PostOnPageAsync(pageIdentifier, content, imgUrls);
         }
         logger.LogInformation("Completed distribution of content for {channel} {method}", channel, method);
     }
 }
 
-public class FacebookMessageDistributorOptions
+public class FacebookPostDistributorOptions
 {
-    public required List<string> UserNames { get; set; }
+    public required List<string> PageIdentifiers { get; set; }
     public string? CampaignName { get; set; }
     public string? Template { get; set; }
 
-    public static FacebookMessageDistributorOptions Parse(string? optionsJson)
+    public static FacebookPostDistributorOptions Parse(string? optionsJson)
     {
         if (optionsJson == null)
             throw new ArgumentException($"No options provided");
 
-        var options = JsonSerializer.Deserialize<FacebookMessageDistributorOptions>(optionsJson);
+        var options = JsonSerializer.Deserialize<FacebookPostDistributorOptions>(optionsJson);
         if (options == null)
             throw new ArgumentException($"Could not recognize options");
 

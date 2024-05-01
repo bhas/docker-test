@@ -1,12 +1,11 @@
-﻿
-using Application.Integrations;
+﻿using Application.Integrations;
 using Application.MessageCreators;
 using Domain.Constants;
 using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
-namespace Domain.ValueType.Channels;
+namespace Application.Distribution.Distributors;
 
 public class EmailDistributor(IEmailClient emailClient, ILogger<EmailDistributor> logger, IMessageCreator messageCreator) : IDistributor
 {
@@ -37,7 +36,7 @@ public class EmailDistributor(IEmailClient emailClient, ILogger<EmailDistributor
             attachments.Add(new EmailAttachment { FileName = "Files.zip", FileStream = File.OpenRead("Somefile") });
         }
 
-            
+
         await emailClient.SendEmailAsync(options.EmailAddress, options.Topic, content, attachments);
         logger.LogInformation("Completed distribution of content for {channel} {method}", channel, method);
     }

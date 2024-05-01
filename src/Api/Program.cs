@@ -31,7 +31,7 @@ builder.Services.AddSingleton<IAssetApi, MockApi>();
 builder.Services.AddSingleton<IOrderListApi, MockApi>();
 builder.Services.AddSingleton<IBriefingApi, MockApi>();
 builder.Services.AddScoped<IDistributionConfigRepository, DistributionConfigRepository>();
-
+builder.Services.AddScoped<IDistributionRepository, DistributionRepository>();
 
 
 
