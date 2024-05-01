@@ -1,5 +1,6 @@
 ﻿using Api.Dtos;
 using Application.HttpClients;
+using Application.Utilities;
 using Domain.Entities;
 using FastEndpoints;
 using Infrastructure.Database.Repositories;
@@ -7,7 +8,7 @@ using System.Text.Json;
 
 namespace Api.Endpoints.Distributions;
 
-public class GetDistributionForConfigEndpoint(IDistributionRepository distributionRepository, IAssetApi assetApi) : Endpoint<GetDistributionForConfigEndpoint.Request, List<ContentDistributionDto>>
+public class GetDistributionForConfigEndpoint(IDistributionRepository distributionRepository, IAssetApi assetApi, ICache cache) : Endpoint<GetDistributionForConfigEndpoint.Request, List<ContentDistributionDto>>
 {
     public class Request
     {
@@ -22,8 +23,14 @@ public class GetDistributionForConfigEndpoint(IDistributionRepository distributi
 
     public override async Task HandleAsync(Request req, CancellationToken ct)
     {
-        var distributions = distributionRepository.GetAllForConfig(req.ConfigId);
+        var cacheKey = "Distribution:" + req.ConfigId;
+        if (cache.TryGetValue(cacheKey, out List<ContentDistributionDto>? cachedResult))
+        {
+            await SendAsync(cachedResult ?? new (), cancellation: ct);
+            return;
+        }
 
+        var distributions = distributionRepository.GetAllForConfig(req.ConfigId);
         List<ContentDistributionDto> dtos = [];
         foreach(var distribution in distributions)
         {
@@ -32,7 +39,7 @@ public class GetDistributionForConfigEndpoint(IDistributionRepository distributi
             var dto = new ContentDistributionDto(distribution, assets);
             dtos.Add(dto);
         }
-
+        cache.Set(cacheKey, dtos, TimeSpan.FromMinutes(2));
         await SendAsync(dtos, cancellation: ct);
     }
 }
