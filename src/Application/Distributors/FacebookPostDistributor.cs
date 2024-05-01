@@ -2,7 +2,7 @@
 using Application.Integrations;
 using Application.MessageCreators;
 using Domain.Constants;
-using Domain.Enums;
+using Domain.Entities;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Entities;
-internal class ContentDistributionConfig
+namespace Infrastructure.Database.Repositories;
+internal class DistributionRepository
 {
 }

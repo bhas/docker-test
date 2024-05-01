@@ -1,5 +1,6 @@
 ﻿
-using Domain.Enums;
+
+using Domain.Entities;
 
 namespace Domain.ValueType.Channels;
 

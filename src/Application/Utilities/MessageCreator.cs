@@ -1,5 +1,5 @@
 ﻿using Domain.Constants;
-using Domain.Enums;
+using Domain.Entities;
 
 namespace Application.MessageCreators;
 
