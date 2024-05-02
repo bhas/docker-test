@@ -1,15 +1,34 @@
 # docker-test
-This is just a small API I developed to get more familiar with Docker. It is a sample API project for importing, storing, and sharing image files. 
+This started as a small API I developed to get more familiar with Docker. It later turned into a proof of concept for a platform that can distribute digital assets.
+
+I use the following core concepts:
+ * **Distribution configs** dictate how assets should be distributed. For instance when should it happen, which assets should be shared and to whom.
+ * **Distributions** are added each times assets for a distribution config get distributed. I holds information about what was shared, when and how it was shared. 
+The solution consists of two main parts:
+
+The solution consists of the following core parts:
+* An API from where the user can configure how assets should be distributed. This will be consumed by a UI.
+* Background services (workers) responsible for reacting to triggers, aggregating the needed data and distribute the content through the appropriate channel.
+
+**Areas of interest:**
+* The API is designed using FastEndpoints to ensure good performance while utilizing the native code separation and slim setup
+* The solution uses Postgres as a database
+* The code is designed for to run in Docker and to support easy change of implementations by relying on interfaces
+* The DistributionManager is the orchestrator of the distribution. The concrete implementation for the distribution depends largely on the chosen channel and method of distribution. Each implementation is added as a new IDistributor to reduce coupling and making easy to add future implementations.
+
+**NB** This code focuses on the area of Distributions and therefore all other parts such as Asset management are mocked for now.
+
 
 
 
 ## Getting started
-1. Install and run docker.
+1. Install Docker.
 1. Open the solution and set `docker-compose` as your startup project
 1. Run the project. This will create the following things for you:
    * Set up a local [Postgres database](https://www.postgresql.org/)
    * Install [pgAdmin](https://www.pgadmin.org/) for managing the local database
    * Run the API project and automatically open its swagger page
+   * Run the Workers which listens for triggers and distribute assets
    
 **OBS** if you get a `Connection is not private` error you may need to restart your browser. 
 

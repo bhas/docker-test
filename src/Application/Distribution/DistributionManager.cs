@@ -49,7 +49,6 @@ public class DistributionManager(IAssetApi assetApi,
     {
         if (channel == DistributionChannel.Email)
         {
-            var awd = DateTime.Now - DateTime.Now;
             var options = new EmailDistributorOptions
             {
                 EmailAddress = "some@email.com",
