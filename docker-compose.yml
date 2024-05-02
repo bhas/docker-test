@@ -38,6 +38,7 @@ services:
 
   workers:
     image: ${DOCKER_REGISTRY-}workers
+    container_name: workers
     build:
       context: .
       dockerfile: src/DistributionWorker/Dockerfile
