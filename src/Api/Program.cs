@@ -27,7 +27,7 @@ builder.Services.SwaggerDocument(options =>
 
 builder.Services.AddDbContext<DockerTestContext>(options =>
 {
-    var connectionString = "Host=postgres-db;Database=docker_test;Username=postgres;Password=postgres";
+    var connectionString = builder.Configuration.GetConnectionString("Database");
     options.UseNpgsql(connectionString);
 });
 builder.Services.AddSingleton<IAssetApi, MockApi>();
