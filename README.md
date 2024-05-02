@@ -3,14 +3,13 @@ This started as a small API I developed to get more familiar with Docker. It lat
 
 I use the following core concepts:
  * **Distribution configs** dictate how assets should be distributed. For instance when should it happen, which assets should be shared and to whom.
- * **Distributions** are added each times assets for a distribution config get distributed. I holds information about what was shared, when and how it was shared. 
-The solution consists of two main parts:
+ * **Distributions** are added each times assets for a distribution config get distributed. I holds information about what was shared, when and how it was shared.
 
 The solution consists of the following core parts:
 * An API from where the user can configure how assets should be distributed. This will be consumed by a UI.
 * Background services (workers) responsible for reacting to triggers, aggregating the needed data and distribute the content through the appropriate channel.
 
-**Areas of interest:**
+**Areas of interest**
 * The API is designed using FastEndpoints to ensure good performance while utilizing the native code separation and slim setup
 * The solution uses Postgres as a database
 * The code is designed for to run in Docker and to support easy change of implementations by relying on interfaces
