@@ -1,6 +1,6 @@
 using Application.Utilities;
 using Domain.Constants;
-using Domain.Enums;
+using Domain.Entities;
 using FluentAssertions;
 
 namespace Application.UnitTests.Utilities;
