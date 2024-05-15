@@ -1,0 +1,14 @@
+
+name: learn-github
+
+run-name: test abc
+
+on: [push]
+
+jobs:
+  checkout-self:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a one-line script
+        run: echo Hello, world!
