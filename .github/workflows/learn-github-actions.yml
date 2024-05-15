@@ -12,3 +12,16 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run a one-line script
         run: echo Hello, world!
+
+  print-song-text:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run multiline script
+        run: |
+          echo "I'm a lumberjack and I'm okay"
+          sleep 2
+          echo "I sleep all night and I work all day"
+          sleep 2
+          echo "So let me hear ya'll say"
+          sleep 2
+          echo "It's all okay"
