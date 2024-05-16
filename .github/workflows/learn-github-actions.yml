@@ -28,7 +28,7 @@ jobs:
 
   say-farewell:
     runs-on: ubuntu-latest
-    depends-on: [print-song-text, checkout-self]
+    needs: [print-song-text, checkout-self]
     steps:
       - name: Say goodbye
         run: echo Goodbye, world!
