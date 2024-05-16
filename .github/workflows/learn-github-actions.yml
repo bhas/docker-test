@@ -25,3 +25,10 @@ jobs:
           echo "So let me hear ya'll say"
           sleep 2
           echo "It's all okay"
+
+  say-farewell:
+    runs-on: ubuntu-latest
+    depends-on: [print-song-text, checkout-self]
+    steps:
+      - name: Say goodbye
+        run: echo Goodbye, world!
